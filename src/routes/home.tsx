@@ -1,7 +1,7 @@
 function Home() {
 	return (
 		<>
-			<p className="text-blue-600">Using Tailwind</p>
+			<p className="text-blue-600">Logicola</p>
 		</>
 	);
 }
