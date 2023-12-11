@@ -8,11 +8,11 @@ import App from "./App";
 
 // biome-ignore lint/style/noNonNullAssertion: <explanation>
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <Theme>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </Theme>
-  </React.StrictMode>
+	<React.StrictMode>
+		<Theme>
+			<BrowserRouter>
+				<App />
+			</BrowserRouter>
+		</Theme>
+	</React.StrictMode>,
 );
