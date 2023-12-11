@@ -1,6 +1,7 @@
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import { Link } from "react-router-dom";
 import { CaretDownIcon } from "@radix-ui/react-icons";
+import { HTMLProps } from "react";
 
 const NavBar = () => (
 	<NavigationMenu.Root className="w-full py-3 border-b-2">
@@ -14,23 +15,28 @@ const NavBar = () => (
 				<NavigationMenu.Trigger>
 					Chapters <CaretDownIcon className="inline-block" aria-hidden />
 				</NavigationMenu.Trigger>
-				<NavigationMenu.Content className=" absolute animate-fadeIn bg-white right-0">
-					<ul className="flex">
-						<li className="mx-3">
-							<NavigationMenu.Link asChild>
-								<Link to="/chapter/1">Chapter 1</Link>
-							</NavigationMenu.Link>
-						</li>
-						<li className="mx-3">
-							<NavigationMenu.Link asChild>
-								<Link to="/chapter/2">Chapter 2</Link>
-							</NavigationMenu.Link>
-						</li>
-						<li className="mx-3">
-							<NavigationMenu.Link asChild>
-								<Link to="/chapter/3">Chapter 3</Link>
-							</NavigationMenu.Link>
-						</li>
+				<NavigationMenu.Content className="absolute animate-fadeIn bg-white left-0 w-full border-b-2">
+					<ul className="grid grid-cols-2">
+						<ChapterLink
+							title="Basic Propositional Logic"
+							subtitle="Chapter 6"
+							to="/chapter/6"
+						/>
+						<ChapterLink
+							title="Propositional Proofs"
+							subtitle="Chapter 7"
+							to="/chapter/7"
+						/>
+						<ChapterLink
+							title="Quantificational Logic"
+							subtitle="Chapter 8"
+							to="/chapter/8"
+						/>
+						<ChapterLink
+							title="Relations and Identity"
+							subtitle="Chapter 9"
+							to="/chapter/9"
+						/>
 					</ul>
 				</NavigationMenu.Content>
 			</NavigationMenu.Item>
@@ -43,4 +49,27 @@ const NavBar = () => (
 	</NavigationMenu.Root>
 );
 
+type ChapterLinkProps = HTMLProps<HTMLLIElement> & {
+	title: string;
+	subtitle: string;
+	to: string;
+};
+
+export const ChapterLink = ({
+	title,
+	subtitle,
+	to,
+	...props
+}: ChapterLinkProps) => (
+	<li className="mx-3" {...props}>
+		<NavigationMenu.Link asChild>
+			<Link to={to}>
+				<div className="flex flex-col">
+					<p className="text-lg">{title}</p>
+					<p className="text-sm">{subtitle}</p>
+				</div>
+			</Link>
+		</NavigationMenu.Link>
+	</li>
+);
 export default NavBar;
